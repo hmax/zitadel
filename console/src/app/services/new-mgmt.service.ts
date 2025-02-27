@@ -5,6 +5,7 @@ import {
   GenerateMachineSecretResponse,
   GetLoginPolicyRequestSchema,
   GetLoginPolicyResponse,
+  GetPasswordComplexityPolicyResponse,
   ListUserMetadataRequestSchema,
   ListUserMetadataResponse,
   RemoveMachineSecretRequestSchema,
@@ -88,5 +89,9 @@ export class NewMgmtService {
     req: MessageInitShape<typeof RemoveUserMetadataRequestSchema>,
   ): Promise<RemoveUserMetadataResponse> {
     return this.grpcService.mgmtNew.removeUserMetadata(create(RemoveUserMetadataRequestSchema, req));
+  }
+
+  public getPasswordComplexityPolicy(): Promise<GetPasswordComplexityPolicyResponse> {
+    return this.grpcService.mgmtNew.getPasswordComplexityPolicy({});
   }
 }

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { PasswordComplexityPolicy } from 'src/app/proto/generated/zitadel/policy_pb';
+import { PasswordComplexityPolicy as BufPasswordComplexityPolicy } from '@zitadel/proto/zitadel/policy_pb';
 
 @Component({
   selector: 'cnsl-password-complexity-view',
@@ -9,5 +10,9 @@ import { PasswordComplexityPolicy } from 'src/app/proto/generated/zitadel/policy
 })
 export class PasswordComplexityViewComponent {
   @Input() public password: AbstractControl | null = null;
-  @Input() public policy!: PasswordComplexityPolicy.AsObject;
+  @Input() public policy!: PasswordComplexityPolicy.AsObject | BufPasswordComplexityPolicy;
+
+  protected get minLength() {
+    return Number(this.policy.minLength);
+  }
 }
